@@ -1,21 +1,18 @@
 body {
-    display:block
+    display:table-row
 }
 
-#parking1 {
-    background-color: aqua;
-    width: 20vh;
-    height: 20vh;
+#parent {
+    display: flex
 }
 
-#parking2 {
-    background-color: aqua;
-    width: 20vh;
+.parking {
+    background-color: rgb(163, 255, 255);
     height: 20vh;
+    width: 20vh;
+    margin: 0vh;
 }
 
-#parking3 {
-    background-color: aqua;
-    width: 20vh;
-    height: 20vh;
+.car {
+    display: block;
 }
