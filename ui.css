@@ -1,5 +1,21 @@
-.parking1 {
-    background-color: aqua; 
-    width: 20vh; 
+body {
+    display:block
+}
+
+#parking1 {
+    background-color: aqua;
+    width: 20vh;
+    height: 20vh;
+}
+
+#parking2 {
+    background-color: aqua;
+    width: 20vh;
+    height: 20vh;
+}
+
+#parking3 {
+    background-color: aqua;
+    width: 20vh;
     height: 20vh;
 }
