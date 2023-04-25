@@ -1,16 +1,11 @@
-const status = document.getElementById("status");
+const distanceElement = document.getElementById("distance");
 
-function updateSensorData() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', '/sensor');
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      status.innerHTML = xhr.responseText;
-    } else {
-      status.innerHTML = 'Error getting sensor data';
-    }
-  };
-  xhr.send();
+function getSensorData() {
+  // replace this with your code to read sensor data
+  return Math.floor(Math.random() * 100);
 }
 
-setInterval(updateSensorData, 1000);
+setInterval(() => {
+  const distance = getSensorData();
+  distanceElement.innerText = distance;
+}, 1000);
