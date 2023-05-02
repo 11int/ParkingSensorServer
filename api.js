@@ -11,7 +11,6 @@ const prevReadings = {
   1: [],
   2: []
 };
-
 function isWithinRange(sensorId, distanceCm) {
     const prev = prevReadings[sensorId];
     if (prev.length < 2) {
@@ -26,7 +25,7 @@ function isWithinRange(sensorId, distanceCm) {
       const prev2Time = now - 4000;
       return !map.has(sensorId) || 
              map.get(sensorId) < prev1 ||
-             map.get(sensorId) < prev2 ||
+             map.get(sensorId)  < prev2 ||
              map.get(sensorId) < prev1 + (now - prevTime) / 1000 * 34300 ||
              map.get(sensorId) < prev2 + (prevTime - prevPrevTime) / 1000 * 34300 ||
              map.get(sensorId) < prev1 + (now - prev1Time) / 1000 * 34300 ||
@@ -46,25 +45,19 @@ app.get("/sensor/:id", (req, res) => {
 });
 
 app.post("/sensor", (req, res) => {
-    console.log('Got body:', req.body);
     const data = req.body;
-    console.log(data.sensorId);
-    const date = new Date();
-
     if (isWithinRange(data.sensorId, data.distanceCm)) {
-      map.set(data.sensorId, data.distanceCm);
-      const prev = prevReadings[data.sensorId];
-      prev.unshift(data.distanceCm);
-      if (prev.length > 2) {
-        prev.pop();
-      }
+        console.log('Got body:', data);
+        map.set(data.sensorId, data.distanceCm);
+        prevReadings[data.sensorId].unshift(data.distanceCm);
+        if (prevReadings[data.sensorId].length > 2) {
+            prevReadings[data.sensorId].pop();
+        }
+        res.sendStatus(200);
     } else {
-      console.log(`Ignoring reading ${data.distanceCm} for sensor ${data.sensorId}`);
+        res.sendStatus(404);
     }
-    
-    res.send(200);
 });
-
 
 app.listen(8000, () => {
     console.log("API server started on port 8000");

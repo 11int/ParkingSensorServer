@@ -10,6 +10,8 @@ async function logJSONData(sensorId) {
   const jsonData = await response.json();
   const distanceCm = jsonData.distanceCm;
   console.log(distanceCm);
+  console.log(jsonData);
+  console.log(response);
   return distanceCm;
 }
 
