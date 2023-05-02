@@ -6,11 +6,6 @@ app.use(cors())
 
 app.use(bodyParser.json());
 
-function getSensorData() {
-    // replace this with your code to read sensor data
-    return Math.floor(Math.random() * 100);
-}
-
 const map = new Map();
 
 app.get("/sensor/:id", (req, res) => {
