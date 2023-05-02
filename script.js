@@ -3,13 +3,12 @@ const distanceElement = document.getElementById("distance");
 
 async function logJSONData(sensorId) {
   const response = await fetch(`http://192.168.2.233:8000/sensor/${sensorId}`);
-  const jsonData = await response.text();
+  const jsonData = await response.json();
   const distanceCm = jsonData.distanceCm;
   console.log(distanceCm);
+  return distanceCm;
 }
 
-logJSONData(1);
-/*
 async function getSensorData() {
   const distance1 = await logJSONData(1);
   const distance2 = await logJSONData(2);
@@ -18,6 +17,5 @@ async function getSensorData() {
 
 setInterval(async () => {
   const [distance1, distance2] = await getSensorData();
-  distanceElement.innerText = `Sensor 1 - Distance: ${distance1} cm`;
+  distanceElement.innerText = `Sensor 1 - Distance: ${distance1} \n Sensor 2 - Distance: ${distance2}`;
 }, 1000);
-*/
