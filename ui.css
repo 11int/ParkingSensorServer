@@ -23,9 +23,15 @@ a{
     font-weight: bolder;
     font-size: 5vh;
 }
+.parking{
+    overflow:auto;
+    height: 30vh;
+    object-fit: contain;
+}
 
 img{
-    width: 40vh;
+    width: 40%;
+    height: 10%;
     transform: rotate(-90deg);
 
 }

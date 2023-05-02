@@ -1,5 +1,6 @@
 
 const distanceElement = document.getElementById("distance");
+const distanceElement2 = document.getElementById("distance2");
 
 async function logJSONData(sensorId) {
   const response = await fetch(`http://192.168.2.233:8000/sensor/${sensorId}`);
@@ -17,5 +18,6 @@ async function getSensorData() {
 
 setInterval(async () => {
   const [distance1, distance2] = await getSensorData();
-  distanceElement.innerText = `Sensor 1 - Distance: ${distance1} \n Sensor 2 - Distance: ${distance2}`;
+  distanceElement.innerText = `Sensor 1 - Distance: ${distance1}`;
+  distanceElement2.innerText = `Sensor 2 - Distance: ${distance2}`;
 }, 1000);
