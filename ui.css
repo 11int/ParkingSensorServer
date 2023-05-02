@@ -1,11 +1,14 @@
-*{
+* {
     text-align: center;
 }
+
 body {
-    font-family:Arial, Helvetica, sans-serif;
-    display:table-row
+    font-family: Arial, Helvetica, sans-serif;
+    display: table-row
 }
-html, body {
+
+html,
+body {
     height: 100%;
 }
 
@@ -19,30 +22,55 @@ html {
     display: flex
 }
 
-a{
+a {
     font-weight: bolder;
     font-size: 5vh;
 }
-.parking{
-    overflow:none;
+
+.parking {
+    overflow: none;
     height: 50vh;
     width: 30vh;
-    object-fit: contain; 
+    object-fit: contain;
 }
 
-img{
+img {
     width: 40%;
     height: 10%;
     transform: rotate(-90deg);
 
 }
-@media screen and (max-width: 700px) {
-    img {
-    width: 20vh;
+
+#car1 {
+    position: relative;
+    animation-name: mation;
+    animation-duration: 4s;
+}
+
+#car2 {
+    position: relative;
+    animation-name: mation;
+    animation-duration: 4s;
+}
+
+@keyframes mation {
+    0% {
+        bottom: 0px;
+    }
+
+    100% {
+        bottom: 500px;
     }
 }
+
+@media screen and (max-width: 700px) {
+    img {
+        width: 20vh;
+    }
+}
+
 @media screen and (max-width: 300px) {
     img {
-    width: 10vh;
+        width: 10vh;
     }
 }
