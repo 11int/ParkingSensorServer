@@ -24,9 +24,10 @@ a{
     font-size: 5vh;
 }
 .parking{
-    overflow:auto;
-    height: 30vh;
-    object-fit: contain;
+    overflow:none;
+    height: 50vh;
+    width: 30vh;
+    object-fit: contain; 
 }
 
 img{

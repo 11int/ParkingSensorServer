@@ -18,7 +18,6 @@ app.get("/sensor/:id", (req, res) => {
     }
 });
 
-
 app.post("/sensor", (req, res) => {
     console.log('Got body:', req.body);
     const data = req.body;
