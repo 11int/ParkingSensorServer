@@ -23,17 +23,17 @@ async function getSensorData() {
 
 setInterval(async () => {
   const [distance1, distance2] = await getSensorData();
-  if(distance1 <= 100){
-    s1.style.backgroundColor = "#ff0000"
+  if (distance1 <= 100) {
+    s1.style.backgroundColor = "#none"
   }
-  else{
-    s1.style.backgroundColor = "#bbb"
+  else {
+    s1.style.backgroundColor = "#none"
   }
-  if(distance2 <= 100){
+  if (distance2 <= 100) {
     s2.style.backgroundColor = "#ff0000"
   }
-  else{
-    s2.style.backgroundColor = "#bbb"
+  else {
+    s2.style.backgroundColor = "#none"
   }
   distanceElement.innerText = `Sensor 1 - Distance: ${distance1.toFixed(0)}`;
   distanceElement2.innerText = `Sensor 2 - Distance: ${distance2.toFixed(0)}`;
