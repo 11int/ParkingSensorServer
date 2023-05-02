@@ -1,23 +1,20 @@
-const { response } = require("express");
 
 const distanceElement = document.getElementById("distance");
 
-async function logJSONData() {
-    const response = await fetch("http://192.168.2.233:8000/sensor/1");
-    const jsonData = await response.text();
-    console.log(jsonData);
-    console.log(response)
+async function logJSONData(sensorId) {
+  const response = await fetch(`http://192.168.2.233:8000/sensor/${sensorId}`);
+  const jsonData = await response.text();
+  console.log(jsonData);
+  console.log(response);
 }
 
-logJSONData();
-
-function getSensorData() {
-    let distance = response
+async function getSensorData() {
+  const distance1 = await logJSONData(1);
+  const distance2 = await logJSONData(2);
+  return [distance1, distance2];
 }
 
-getSensorData();
-
-setInterval(() => {
-    const distance = getSensorData();
-    distanceElement.innerText = distance;
+setInterval(async () => {
+  const [distance1, distance2] = await getSensorData();
+  distanceElement.innerText = `Sensor 1 - Distance: ${distance1} cm`;
 }, 1000);
