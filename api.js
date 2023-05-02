@@ -9,15 +9,15 @@ app.use(bodyParser.json());
 const map = new Map();
 
 app.get("/sensor/:id", (req, res) => {
-    //const distance = getSensorData();
     const id = parseInt(req.params.id);
     const distance = map.get(id);
     if (distance == null) {
-        res.send("No data found");
+        res.json({error: "No data found"});
     } else {
-        res.send(`Sensor ${id} - distance: ${distance} cm`);
+        res.json({sensorId: id, distanceCm: distance});
     }
 });
+
 
 app.post("/sensor", (req, res) => {
     console.log('Got body:', req.body);
