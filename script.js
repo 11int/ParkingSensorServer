@@ -1,6 +1,9 @@
-
 const distanceElement = document.getElementById("distance");
 const distanceElement2 = document.getElementById("distance2");
+let s1 = document.getElementById("parking1")
+let s2 = document.getElementById("parking2")
+let s3 = document.getElementById("parking3")
+
 
 async function logJSONData(sensorId) {
   const response = await fetch(`http://192.168.2.233:8000/sensor/${sensorId}`);
@@ -18,6 +21,14 @@ async function getSensorData() {
 
 setInterval(async () => {
   const [distance1, distance2] = await getSensorData();
+
+  if(distance1 <= 2000){
+    s1.style.backgroundColor = "#ff0000"
+  }
+  else{
+    s1.style.backgroundColor = "#bbb"
+  }
+
   distanceElement.innerText = `Sensor 1 - Distance: ${distance1}`;
   distanceElement2.innerText = `Sensor 2 - Distance: ${distance2}`;
 }, 1000);
