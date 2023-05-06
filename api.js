@@ -7,31 +7,31 @@ app.use(cors())
 app.use(bodyParser.json());
 
 const map = new Map();
-const prevReadings = {
-  1: [],
-  2: []
-};
-function isWithinRange(sensorId, distanceCm) {
-    const prev = prevReadings[sensorId];
-    if (prev.length < 2) {
-      return true;
+let lastDistanceCm = null;
+let lastTimestamp = null;
+
+function distanceChecker(req, next) {
+  const distanceCm = req.body.distanceCm;
+
+  if (typeof distanceCm === 'number' && !isNaN(distanceCm)) {
+    const timestamp = Date.now();
+
+    if (lastDistanceCm === null) {
+      lastDistanceCm = distanceCm;
+      lastTimestamp = timestamp;
+    } else {
+      const deltaDistanceCm = distanceCm - lastDistanceCm;
+      const deltaTimeMs = timestamp - lastTimestamp;
+
+      if (deltaDistanceCm > 500 && deltaTimeMs < 2000) {
+        console.warn(`Warning: distanceCm changed too quickly! Delta distanceCm: ${deltaDistanceCm}, Delta time: ${deltaTimeMs} ms`);
+      }
+      lastDistanceCm = distanceCm;
+      lastTimestamp = timestamp;
     }
-    const [prev1, prev2] = prev;
-    if (distanceCm > prev1 + 300 && distanceCm > prev2 + 300) {
-      const now = new Date().getTime();
-      const prevTime = now - 2000;
-      const prevPrevTime = prevTime - 1000;
-      const prev1Time = now - 3000;
-      const prev2Time = now - 4000;
-      return !map.has(sensorId) || 
-             map.get(sensorId) < prev1 ||
-             map.get(sensorId) < prev2 ||
-             map.get(sensorId) < prev1 + (now - prevTime) / 1000 * 34300 ||
-             map.get(sensorId) < prev2 + (prevTime - prevPrevTime) / 1000 * 34300 ||
-             map.get(sensorId) < prev1 + (now - prev1Time) / 1000 * 34300 ||
-             map.get(sensorId) < prev2 + (prev1Time - prev2Time) / 1000 * 34300;
-    }
-    return true;
+  }
+
+  next();
 }
 
 app.get("/sensor/:id", (req, res) => {
@@ -45,23 +45,16 @@ app.get("/sensor/:id", (req, res) => {
 });
 
 app.post("/sensor", (req, res) => {
-    console.log('Got body:', req.body);
-    const data = req.body;
-    console.log(data.sensorId);
-    const date = new Date();
-
-    if (isWithinRange(data.sensorId, data.distanceCm)) {
-      map.set(data.sensorId, data.distanceCm);
-      const prev = prevReadings[data.sensorId];
-      prev.unshift(data.distanceCm);
-      if (prev.length > 2) {
-        prev.pop();
-      }
+    if(distanceChecker){
+        console.log('Got body:', req.body);
+        const data = req.body;
+        console.log(data.sensorId);
+        const date = new Date();
+        res.send(200);
     } else {
-      console.log(`Ignoring reading ${data.distanceCm} for sensor ${data.sensorId}`);
+        res.send(400);
     }
     
-    res.send(200);
 });
 
 app.listen(8000, () => {
