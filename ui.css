@@ -38,22 +38,41 @@ img {
     width: 40%;
     height: 10%;
     transform: rotate(-90deg);
-
 }
 
 #car1 {
     position: relative;
-    animation-name: mation;
-    animation-duration: 4s;
+    bottom: 500px;
+    animation: in 5s forwards;
 }
 
 #car2 {
     position: relative;
-    animation-name: mation;
-    animation-duration: 4s;
+    bottom: 500px;
+    animation: in 5s forwards;
 }
 
-@keyframes mation {
+@keyframes in {
+    0% {
+        bottom: 500px;
+    }
+
+    100% {
+        bottom: 0px;
+    }
+}
+
+@keyframes rot {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes out {
     0% {
         bottom: 0px;
     }
@@ -65,7 +84,7 @@ img {
 
 @media screen and (max-width: 700px) {
     img {
-        width: 20vh;
+        width: 10vh;
     }
 }
 
