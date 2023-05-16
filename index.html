@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="No">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +8,6 @@
     <link rel="stylesheet" href="ui.css">
     <link rel="icon" href="car.jpg">
 </head>
-
 <body>
     <a id="main">Parkeringsoversikt</a>
     <div id="parent">
@@ -17,7 +15,7 @@
             <p>Plass1</p>
             <div class="cars">
                 <div id="car1">
-                    <img src="car.jpg" class="parking car">
+                    <img src="car.jpg" class="parking car" alt="">
                 </div>
             </div>
         </div>
@@ -25,12 +23,13 @@
             <p>Plass2</p>
             <div class="cars">
                 <div id="car2">
-                    <img src="car.jpg" class="parking car">
+                    <img src="car.jpg" class="parking car" alt="">
                 </div>
             </div>
         </div>
     </div>
     <h1>Distance Sensor</h1>
+    <p id="timeStamp1"></p>
     <p>Distance: <span id="distance"></span> cm</p>
     <p>Distance: <span id="distance2"></span> cm</p>
     <p id="status"></p>
@@ -40,5 +39,4 @@
 
     <script src="/script.js"></script>
 </body>
-
 </html>
