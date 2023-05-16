@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <title>Parkeringsoversikt</title>
     <link rel="stylesheet" href="ui.css">
+    <link rel="icon" href="car.jpg">
 </head>
-
 <body>
     <a>Parkeringsoversikt</a>
     <div id="parent">
@@ -15,24 +15,25 @@
             <p>Plass1</p>
             <div class="cars">
                 <div id="car1">
-                    <img src="https://clipground.com/images/aerial-photographs-clipart-16.jpg" class="parking car" alt="2">
+                    <img src="car.jpg" class="parking car" alt="">
                 </div>
             </div>
         </div>
         <div id="parking2" class="parking">
             <p>Plass2</p>
             <div class="cars">
-                < id="car2">
-                    <img src="https://clipground.com/images/aerial-photographs-clipart-16.jpg" class="parking car" alt="2"> 
+                <div id="car2">
+                    <img src="car.jpg" class="parking car" alt="">
                 </div>
             </div>
         </div>
     </div>
     <h1>Distance Sensor</h1>
+    <p id="timeStamp1"></p>
     <p>Distance: <span id="distance"></span> cm</p>
     <p>Distance: <span id="distance2"></span> cm</p>
     <p id="status"></p>
+    <button id="animation">animation</button>
     <script src="/script.js"></script>
 </body>
-
 </html>

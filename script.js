@@ -2,38 +2,43 @@ const distanceElement = document.getElementById("distance");
 const distanceElement2 = document.getElementById("distance2");
 let s1 = document.getElementById("parking1")
 let s2 = document.getElementById("parking2")
+let timestamp1 = document.getElementById("timeStamp1")
 
 async function logJSONData(sensorId) {
   const response = await fetch(`http://192.168.2.233:8000/sensor/${sensorId}`);
   const jsonData = await response.json();
   const sensorData = jsonData.sensorData;
   const distanceCm = sensorData.distanceCm
+  const timestamp = sensorData.timestamp
+  console.log(timestamp);
   console.log(distanceCm);
   console.log(jsonData);
   console.log(response);
-  return distanceCm;
+  return sensorData;
 }
 
 async function getSensorData() {
-  const distance1 = await logJSONData(1);
-  const distance2 = await logJSONData(2);
-  return [distance1, distance2];
+  const sensorData1 = await logJSONData(1);
+  const sensorData2 = await logJSONData(2);
+  return [sensorData1, sensorData2];
 }
 
 setInterval(async () => {
-  const [distance1, distance2] = await getSensorData();
-  if (distance1 <= 100) {
-    s1.style.backgroundColor = "#none"
+  const [sensorData1, sensorData2] = await getSensorData();
+  if (sensorData1.distanceCm <= 100) {
+    s1.style.backgroundColor = "#yyy"
   }
   else {
-    s1.style.backgroundColor = "#none"
+    s1.style.backgroundColor = "#yyy"
   }
-  if (distance2 <= 100) {
+  if (sensorData2.distanceCm <= 100) {
     s2.style.backgroundColor = "#ff0000"
   }
   else {
-    s2.style.backgroundColor = "#none"
+    s2.style.backgroundColor = "#yyy"
   }
-  distanceElement.innerText = `Sensor 1 - Distance: ${distance1.toFixed(0)}`;
-  distanceElement2.innerText = `Sensor 2 - Distance: ${distance2.toFixed(0)}`;
+  
+  timestamp1.innerText = `Sensor 1 - Time Stamp: ${sensorData1.timestamp}`;
+  distanceElement.innerText = `Sensor 1 - Distance: ${sensorData1.distanceCm.toFixed(0)}`;
+  distanceElement2.innerText = `Sensor 2 - Distance: ${sensorData2.distanceCm.toFixed(0)}`;
 }, 1000);
