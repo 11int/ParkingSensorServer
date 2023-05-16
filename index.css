@@ -43,13 +43,11 @@ img {
 #car1 {
     position: relative;
     bottom: 500px;
-    animation: in 5s forwards;
 }
 
 #car2 {
     position: relative;
     bottom: 500px;
-    animation: in 5s forwards;
 }
 
 @keyframes in {

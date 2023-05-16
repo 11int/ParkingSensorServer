@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parkeringsoversikt</title>
-    <link rel="stylesheet" href="ui.css">
+    <link rel="stylesheet" href="index.css">
     <link rel="icon" href="car.jpg">
 </head>
 <body>
@@ -14,16 +14,16 @@
         <div id="parking1" class="parking">
             <p>Plass1</p>
             <div class="cars">
-                <div id="car1">
-                    <img src="car.jpg" class="parking car" alt="">
+                <div>
+                    <img src="car.jpg" class="parking car" alt="" id="car1" style="animation: in 5s forwards;">
                 </div>
             </div>
         </div>
         <div id="parking2" class="parking">
             <p>Plass2</p>
             <div class="cars">
-                <div id="car2">
-                    <img src="car.jpg" class="parking car" alt="">
+                <div>
+                    <img src="car.jpg" class="parking car" alt="" id="car2" style="animation: in 5s forwards;">
                 </div>
             </div>
         </div>
@@ -34,9 +34,10 @@
     <p>Distance: <span id="distance2"></span> cm</p>
     <p id="status"></p>
 
-    <button type="button" onclick="document.getElementById('main').style.color = 'red'">
-        Click Me!</button>
+    <button type="button" id="button1">button1</button>
+    <button type="button" id="button2">button2</button>
 
     <script src="/script.js"></script>
+    <script src="animation.js"></script>
 </body>
 </html>
