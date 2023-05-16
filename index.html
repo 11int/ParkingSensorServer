@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <a>Parkeringsoversikt</a>
+    <a id="main">Parkeringsoversikt</a>
     <div id="parent">
         <div id="parking1" class="parking">
             <p>Plass1</p>
@@ -34,7 +34,10 @@
     <p>Distance: <span id="distance"></span> cm</p>
     <p>Distance: <span id="distance2"></span> cm</p>
     <p id="status"></p>
-    <button id="animation">animation</button>
+
+    <button type="button" onclick="document.getElementById('main').style.color = 'red'">
+        Click Me!</button>
+
     <script src="/script.js"></script>
 </body>
 
