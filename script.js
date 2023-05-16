@@ -2,13 +2,12 @@ const distanceElement = document.getElementById("distance");
 const distanceElement2 = document.getElementById("distance2");
 let s1 = document.getElementById("parking1")
 let s2 = document.getElementById("parking2")
-let s3 = document.getElementById("parking3")
-
 
 async function logJSONData(sensorId) {
   const response = await fetch(`http://192.168.2.233:8000/sensor/${sensorId}`);
   const jsonData = await response.json();
-  const distanceCm = jsonData.distanceCm;
+  const sensorData = jsonData.sensorData;
+  const distanceCm = sensorData.distanceCm
   console.log(distanceCm);
   console.log(jsonData);
   console.log(response);
