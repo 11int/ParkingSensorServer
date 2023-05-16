@@ -7,32 +7,6 @@ app.use(cors())
 app.use(bodyParser.json());
 
 const map = new Map();
-let lastDistanceCm = null;
-let lastTimestamp = null;
-
-function distanceChecker(req, next) {
-  const distanceCm = req.body.distanceCm;
-
-  if (typeof distanceCm === 'number' && !isNaN(distanceCm)) {
-    const timestamp = Date.now();
-
-    if (lastDistanceCm === null) {
-      lastDistanceCm = distanceCm;
-      lastTimestamp = timestamp;
-    } else {
-      const deltaDistanceCm = distanceCm - lastDistanceCm;
-      const deltaTimeMs = timestamp - lastTimestamp;
-
-      if (deltaDistanceCm > 500 && deltaTimeMs < 2000) {
-        console.warn(`Warning: distanceCm changed too quickly! Delta distanceCm: ${deltaDistanceCm}, Delta time: ${deltaTimeMs} ms`);
-      }
-      lastDistanceCm = distanceCm;
-      lastTimestamp = timestamp;
-    }
-  }
-
-  next();
-}
 
 app.get("/sensor/:id", (req, res) => {
   const id = parseInt(req.params.id);
@@ -44,17 +18,12 @@ app.get("/sensor/:id", (req, res) => {
   }
 });
 
-app.post("/sensor", (req, res) => {
-    if(distanceChecker){
-        console.log('Got body:', req.body);
-        const data = req.body;
-        console.log(data.sensorId);
-        const date = new Date();
-        res.send(200);
-    } else {
-        res.send(400);
-    }
-    
+app.post("/sensor", (req, res) => {  
+    console.log('Got body:', req.body);
+    const data = req.body;
+    console.log(data.sensorId);
+    const date = new Date();
+    res.send(200);  
 });
 
 app.listen(8000, () => {
