@@ -23,6 +23,14 @@ async function getSensorData() {
   return [sensorData1, sensorData2];
 }
 
+const button1 = document.getElementById("button1")
+const button2 = document.getElementById("button2")
+const car1 = document.getElementById("car1")
+const car2 = document.getElementById("car2")
+
+let buttonclicked1 = false;
+let buttonclicked2 = false;
+
 setInterval(async () => {
   const [sensorData1, sensorData2] = await getSensorData();
   if (sensorData1.distanceCm <= 100) {
@@ -33,6 +41,13 @@ setInterval(async () => {
   }
   if (sensorData2.distanceCm <= 100) {
     s2.style.backgroundColor = "#ff0000"
+    if (buttonclicked2) {
+      car2.style = "animation: in 5s forwards";
+      buttonclicked2 = false;
+    } else {
+      car2.style = "animation: out 5s forwards";
+      buttonclicked2 = true;
+    }
   }
   else {
     s2.style.backgroundColor = "#none"
