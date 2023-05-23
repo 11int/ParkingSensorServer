@@ -6,10 +6,8 @@ let timestamp1 = document.getElementById("timeStamp1")
 
 const button1 = document.getElementById("button1")
 const button2 = document.getElementById("button2")
-const car1 = document.getElementById("car1")
-const car2 = document.getElementById("car2")
-let buttonclicked1 = false;
-let buttonclicked2 = false;
+const car_1 = document.getElementById("car1")
+const car_2 = document.getElementById("car2")
 
 async function logJSONData(sensorId) {
   const response = await fetch(`http://192.168.2.233:8000/sensor/${sensorId}`);
@@ -31,6 +29,7 @@ async function getSensorData() {
 }
 
 setInterval(async () => {
+  console.log("Loop starter")
   const [sensorData1, sensorData2] = await getSensorData();
   if (sensorData1.distanceCm <= 100) {
     s1.style.backgroundColor = "#none"
@@ -49,16 +48,12 @@ setInterval(async () => {
   distanceElement2.innerText = `Sensor 2 - Distance: ${sensorData2.distanceCm.toFixed(0)}`;
 }, 1000);
 
-function car2() {
-  car1.style = "animation: in 5s forwards";
-  buttonclicked1 = false;
-  car1.style = "animation: out 5s forwards";
-  buttonclicked1 = true;
+function car1() {
+  car_1.style = "animation: in 5s forwards";
+  car_1.style = "animation: out 5s forwards";
 };
 
-function car1() {
-  car2.style = "animation: in 5s forwards";
-  buttonclicked2 = false;
-  car2.style = "animation: out 5s forwards";
-  buttonclicked2 = true;
+function car2() {
+  car_2.style = "animation: in 5s forwards";
+  car_2.style = "animation: out 5s forwards";
 };
