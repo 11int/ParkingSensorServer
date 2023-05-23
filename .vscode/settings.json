@@ -1,0 +1,9 @@
+{
+    "liveServer.settings.ignoreFiles": [
+        "Date.txt",
+        ".vscode/**",
+        "**/*.scss",
+        "**/*.sass",
+        "**/*.ts"
+    ]
+}

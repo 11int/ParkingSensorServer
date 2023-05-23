@@ -12,6 +12,7 @@ const car_2 = document.getElementById("car2")
 async function logJSONData(sensorId) {
   const response = await fetch(`http://192.168.2.233:8000/sensor/${sensorId}`);
   const jsonData = await response.json();
+  console.log(jsonData);
   const sensorData = jsonData.sensorData;
   const distanceCm = sensorData.distanceCm
   const timestamp = sensorData.timestamp
@@ -57,13 +58,3 @@ function car2() {
   car_2.style = "animation: in 5s forwards";
   car_2.style = "animation: out 5s forwards";
 };
-
-
-const content = 'Some content!';
-
-fs.writeFile('/Date.txt', content, err => {
-  if (err) {
-    console.error(err);
-  }
-  // file written successfully
-});
