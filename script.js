@@ -32,16 +32,16 @@ setInterval(async () => {
   console.log("Loop starter")
   const [sensorData1, sensorData2] = await getSensorData();
   if (sensorData1.distanceCm <= 100) {
-    s1.style.backgroundColor = "#none"
+    s1.style.backgroundColor = "#fff"
   }
   else {
-    s1.style.backgroundColor = "#none"
+    s1.style.backgroundColor = "#fff"
   }
   if (sensorData2.distanceCm <= 100) {
     s2.style.backgroundColor = "#ff0000"
   }
   else {
-    s2.style.backgroundColor = "#none"
+    s2.style.backgroundColor = "#fff"
   }
   timestamp1.innerText = `Sensor 1 - Time: ${sensorData1.timestamp}`;
   distanceElement.innerText = `Sensor 1 - Distance: ${sensorData1.distanceCm.toFixed(0)}`;
@@ -57,3 +57,13 @@ function car2() {
   car_2.style = "animation: in 5s forwards";
   car_2.style = "animation: out 5s forwards";
 };
+
+
+const content = 'Some content!';
+
+fs.writeFile('/Date.txt', content, err => {
+  if (err) {
+    console.error(err);
+  }
+  // file written successfully
+});
