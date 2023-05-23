@@ -33,11 +33,9 @@ setInterval(async () => {
   const [sensorData1, sensorData2] = await getSensorData();
   if (sensorData1.distanceCm <= 100) {
     s1.style.backgroundColor = "#none"
-    car1in()
   }
   else {
     s1.style.backgroundColor = "#none"
-    car1out()
   }
   if (sensorData2.distanceCm <= 100) {
     s2.style.backgroundColor = "#none"
@@ -45,7 +43,6 @@ setInterval(async () => {
   }
   else {
     s2.style.backgroundColor = "#none"
-    car2out()
   }
   timestamp1.innerText = `Sensor 1 - Time: ${sensorData1.timestamp}`;
   distanceElement.innerText = `Sensor 1 - Distance: ${sensorData1.distanceCm.toFixed(0)}`;
@@ -71,3 +68,13 @@ function car1in() {
   car_1.style = "animation: in 5s forwards";
   setTimeout(5000);
 };
+
+
+const content = 'Some content!';
+
+fs.writeFile('/Date.txt', content, err => {
+  if (err) {
+    console.error(err);
+  }
+  // file written successfully
+});
