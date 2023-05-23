@@ -4,6 +4,13 @@ let s1 = document.getElementById("parking1")
 let s2 = document.getElementById("parking2")
 let timestamp1 = document.getElementById("timeStamp1")
 
+const button1 = document.getElementById("button1")
+const button2 = document.getElementById("button2")
+const car1 = document.getElementById("car1")
+const car2 = document.getElementById("car2")
+let buttonclicked1 = false;
+let buttonclicked2 = false;
+
 async function logJSONData(sensorId) {
   const response = await fetch(`http://192.168.2.233:8000/sensor/${sensorId}`);
   const jsonData = await response.json();
@@ -33,13 +40,6 @@ setInterval(async () => {
   }
   if (sensorData2.distanceCm <= 100) {
     s2.style.backgroundColor = "#ff0000"
-    if (buttonclicked2) {
-      car2.style = "animation: in 5s forwards";
-      buttonclicked2 = false;
-    } else {
-      car2.style = "animation: out 5s forwards";
-      buttonclicked2 = true;
-    }
   }
   else {
     s2.style.backgroundColor = "#none"
@@ -48,3 +48,17 @@ setInterval(async () => {
   distanceElement.innerText = `Sensor 1 - Distance: ${sensorData1.distanceCm.toFixed(0)}`;
   distanceElement2.innerText = `Sensor 2 - Distance: ${sensorData2.distanceCm.toFixed(0)}`;
 }, 1000);
+
+function car2() {
+  car1.style = "animation: in 5s forwards";
+  buttonclicked1 = false;
+  car1.style = "animation: out 5s forwards";
+  buttonclicked1 = true;
+};
+
+function car1() {
+  car2.style = "animation: in 5s forwards";
+  buttonclicked2 = false;
+  car2.style = "animation: out 5s forwards";
+  buttonclicked2 = true;
+};
