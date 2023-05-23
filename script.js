@@ -68,7 +68,7 @@ function car2out() {
   setTimeout(5000);
 };
 
-function car1in() {
-  car_1.style = "animation: in 5s forwards";
+function car2in() {
+  car_2.style = "animation: in 5s forwards";
   setTimeout(5000);
 };
