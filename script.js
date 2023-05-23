@@ -23,14 +23,6 @@ async function getSensorData() {
   return [sensorData1, sensorData2];
 }
 
-const button1 = document.getElementById("button1")
-const button2 = document.getElementById("button2")
-const car1 = document.getElementById("car1")
-const car2 = document.getElementById("car2")
-
-let buttonclicked1 = false;
-let buttonclicked2 = false;
-
 setInterval(async () => {
   const [sensorData1, sensorData2] = await getSensorData();
   if (sensorData1.distanceCm <= 100) {
