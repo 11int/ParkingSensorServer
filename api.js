@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require('body-parser')
 const cors = require('cors');
 const app = express();
+const moment = require('moment');
 app.use(cors())
 
 app.use(bodyParser.json());
@@ -22,9 +23,11 @@ app.post("/sensor", (req, res) => {
     console.log('Got body:', req.body);
     const data = req.body;
     console.log(data.sensorId);
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const currentTime = moment().tz(timezone).format();
     const sensorData = {
       distanceCm: data.distanceCm,
-      timestamp: new Date().toISOString(), 
+      timestamp: currentTime, 
     }
     map.set(data.sensorId, sensorData);
     res.send(200);  
