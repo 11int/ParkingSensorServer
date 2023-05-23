@@ -33,28 +33,42 @@ setInterval(async () => {
   console.log("Loop starter")
   const [sensorData1, sensorData2] = await getSensorData();
   if (sensorData1.distanceCm <= 100) {
-    s1.style.backgroundColor = "#fff"
+    s1.style.backgroundColor = "#none"
+    car1in()
   }
   else {
-    s1.style.backgroundColor = "#fff"
+    s1.style.backgroundColor = "#none"
+    car1out()
   }
   if (sensorData2.distanceCm <= 100) {
-    s2.style.backgroundColor = "#ff0000"
+    s2.style.backgroundColor = "#none"
+    car2in()
   }
   else {
-    s2.style.backgroundColor = "#fff"
+    s2.style.backgroundColor = "#none"
+    car2out()
   }
   timestamp1.innerText = `Sensor 1 - Time: ${sensorData1.timestamp}`;
   distanceElement.innerText = `Sensor 1 - Distance: ${sensorData1.distanceCm.toFixed(0)}`;
   distanceElement2.innerText = `Sensor 2 - Distance: ${sensorData2.distanceCm.toFixed(0)}`;
 }, 1000);
 
-function car1() {
-  car_1.style = "animation: in 5s forwards";
+function car1out() {
   car_1.style = "animation: out 5s forwards";
+  setTimeout(5000);
 };
 
-function car2() {
-  car_2.style = "animation: in 5s forwards";
+function car1in() {
+  car_1.style = "animation: in 5s forwards";
+  setTimeout(5000);
+};
+
+function car2out() {
   car_2.style = "animation: out 5s forwards";
+  setTimeout(5000);
+};
+
+function car1in() {
+  car_1.style = "animation: in 5s forwards";
+  setTimeout(5000);
 };
