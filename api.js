@@ -21,18 +21,19 @@ app.get("/sensor/:id", (req, res) => {
 });
 
 app.post("/sensor", (req, res) => {  
-    console.log('Got body:', req.body);
-    const data = req.body;
-    console.log(data.sensorId);
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const currentTime = moment.tz(timezone).format();
-    const sensorData = {
-      distanceCm: data.distanceCm,
-      timestamp: currentTime, 
-    }
+  console.log('Got body:', req.body);
+  const data = req.body;
+  console.log(data.sensorId);
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const currentTime = moment().tz(timezone).format('YYYY-MM-DD HH:mm:ss');
+  const sensorData = {
+    distanceCm: data.distanceCm,
+    timestamp: currentTime, 
+  }
     map.set(data.sensorId, sensorData);
-    res.send(200);  
+    res.sendStatus(200);  
 });
+
 
 app.listen(8000, () => {
   console.log("API server started on port 8000");
